@@ -104,7 +104,9 @@ body {
 
 .idea-5 span,
 .idea-6 span,
-.wish-hbd span,
+.wish-hbd span {
+  display: inline-block;
+}
 
 .idea-6 span {
   font-size: 15rem;

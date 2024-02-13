@@ -1,7 +1,5 @@
 "use strict";
 
-
-
 const titleElement = document.querySelector(".title");
 const buttonsContainer = document.querySelector(".buttons");
 const yesButton = document.querySelector(".btn--yes");
