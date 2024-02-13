@@ -13,7 +13,7 @@ let noCount = 0;
 
 function preloadImages() {
   // Preload images
-  const preloadedImages = [new Image.src=`img/cat-yes.jpg`];
+  const preloadedImages = [new Image().src=`img/cat-yes.jpg`];
   
   
 
