@@ -57,7 +57,7 @@ function changeImage(image) {
   catImg.src = `img/cat-${image}.jpg`;
   if (catImg.src =`img/cat-yes.jpg`){
     setTimeout(pauseScript, 3000)
-    window.location.href = 'flower/';
+    window.location.href = '../flower/';
   }
 }
 
