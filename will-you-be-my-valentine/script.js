@@ -1,5 +1,7 @@
 "use strict";
 
+const { pause } = require("browser-sync");
+
 const titleElement = document.querySelector(".title");
 const buttonsContainer = document.querySelector(".buttons");
 const yesButton = document.querySelector(".btn--yes");
@@ -25,7 +27,6 @@ noButton.addEventListener("click", function () {
     }
   }
 });
-
 function handleYesClick() {
   titleElement.innerHTML = "Yayyy!! :3";
   buttonsContainer.classList.add("hidden");
@@ -56,6 +57,10 @@ function generateMessage(noCount) {
 
 function changeImage(image) {
   catImg.src = `img/cat-${image}.jpg`;
+  if (catImg.src =`img/cat-yes.jpg`){
+    setTimeout(updateNoButtonText, 3000)
+    window.location.href = 'flower/';
+  }
 }
 
 function updateNoButtonText() {
