@@ -238,7 +238,7 @@ const animationTimeline = () => {
       },
       "party"
     )
-    .to(
+    .staggerTo(
       ".eight svg",
       1.5,
       {
@@ -247,12 +247,15 @@ const animationTimeline = () => {
         scale: 80,
         repeat: 3,
         repeatDelay: 1.4,
-        onComplete: () => {
-          window.location.href = 'will-you-be-my-valentine/index.html';
-        }
       },
       0.3
     )
+    .to(".ten", 0.5, {
+      // Animation for elements with the .ten class
+      onComplete: () => {
+        window.location.href = 'will-you-be-my-valentine/index.html';
+      }
+    })
     .to(".six", 0.5, {
       opacity: 0,
       y: 30,
