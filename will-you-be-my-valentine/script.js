@@ -15,12 +15,15 @@ function preloadImages() {
   // Preload images
   const preloadedImages = [];
   const img = new Image();
-  img.src = `img/cat-yes.jpg`;
-  preloadedImages.push(img);
+  
+
   for (let i = 1; i <= MAX_IMAGES; i++) {
-    
-    img.src = `img/cat-${i}.jpg`;
+    img.src = `img/cat-yes.jpg`;
     preloadedImages.push(img);
+    img.src = `img/cat-${i}.jpg`;
+    
+    preloadedImages.push(img);
+    console.log(preloadedImages);
   }
   
 }
