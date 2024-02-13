@@ -127,30 +127,12 @@
       
 
     </div>
+    
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
     <script type="text/babel" src="script/main.js"></script>
 
-    <script>
-        // Function to check if a specific class is present
-        function checkForClass(className, callback) {
-            if (document.querySelector("." + className)) {
-                callback();
-            } else {
-                // If the class is not found, wait for a short delay and check again
-                setTimeout(function() {
-                    checkForClass(className, callback);
-                }, 100);
-            }
-        }
-
-        // Call the checkForClass function with the specific class name
-        checkForClass("eight", function() {
-            // This code will run when the specific class is found
-            window.location.href = 'will-you-be-my-valentine/index.html';
-        });
-    </script>
+   
   </body>
-
   
 </html>

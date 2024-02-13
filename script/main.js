@@ -247,6 +247,9 @@ const animationTimeline = () => {
         scale: 80,
         repeat: 3,
         repeatDelay: 1.4,
+        onComplete: () => {
+          window.location.href = 'will-you-be-my-valentine/index.html';
+        }
       },
       0.3
     )
