@@ -30,6 +30,7 @@ function handleYesClick() {
   buttonsContainer.classList.add("hidden");
   changeImage("yes");
   setTimeout(pauseScript, 5000)
+  setTimeout(pauseScript, 1000)
   window.location.href = '../flowers/'
 }
 
