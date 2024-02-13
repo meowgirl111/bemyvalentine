@@ -14,9 +14,6 @@ let noCount = 0;
 function preloadImages() {
   // Preload images
   const preloadedImages = [new Image().src=`img/cat-yes.jpg`];
-  
-  
-
   for (let i = 1; i <= MAX_IMAGES; i++) {
     const img = new Image();
     img.src = `img/cat-${i}.jpg`;
@@ -46,7 +43,7 @@ function handleYesClick() {
   changeImage("yes");
   setTimeout(function() {
     window.location.href = '../flowers/';
-  }, 5000);
+  }, 2000);
   
 }
 
