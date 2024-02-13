@@ -1,8 +1,8 @@
 <h1 align="center">
-    Valentine's Wish
+    Valentine Greetings
 </h1>
 
-[![Author](https://img.shields.io/badge/author-GovindCodes-green)](https://github.com/GovindCodes)
+[![Author](https://img.shields.io/badge/author-sugoides-green)](https://github.com/sugoides)
 
 
 #### [See it Live](https://sugoides.github.io/be-my-valentine/)
