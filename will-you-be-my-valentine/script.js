@@ -58,11 +58,14 @@ function generateMessage(noCount) {
 function changeImage(image) {
   catImg.src = `img/cat-${image}.jpg`;
   if (catImg.src =`img/cat-yes.jpg`){
-    setTimeout(updateNoButtonText, 3000)
+    setTimeout(pauseScript, 3000)
     window.location.href = 'flower/';
   }
 }
 
 function updateNoButtonText() {
   noButton.innerHTML = generateMessage(noCount);
+}
+function pauseScript() {
+  // Do nothing, script is effectively paused
 }
