@@ -11,6 +11,18 @@ const MAX_IMAGES = 5;
 let play = true;
 let noCount = 0;
 
+function preloadImages() {
+  // Preload images
+  const preloadedImages = [];
+  for (let i = 1; i <= MAX_IMAGES; i++) {
+    const img = new Image();
+    img.src = `img/cat-${i}.jpg`;
+    preloadedImages.push(img);
+  }
+  img.src = `img/cat-yes.jpg`;
+  preloadedImages.push(img);
+}
+
 yesButton.addEventListener("click", handleYesClick);
 
 noButton.addEventListener("click", function () {
@@ -29,9 +41,8 @@ function handleYesClick() {
   titleElement.innerHTML = "Yayyy!! :3";
   buttonsContainer.classList.add("hidden");
   changeImage("yes");
-  setTimeout(pauseScript, 5000)
-  setTimeout(pauseScript, 1000)
-  window.location.href = '../flowers/'
+  setTimeout(window.location.href = '../flowers/', 5000)
+  
 }
 
 function resizeYesButton() {
@@ -66,3 +77,6 @@ function updateNoButtonText() {
 function pauseScript() {
   // Do nothing, script is effectively paused
 }
+document.addEventListener("DOMContentLoaded", function() {
+  preloadImages();
+});
