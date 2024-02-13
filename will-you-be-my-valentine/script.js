@@ -44,7 +44,9 @@ function handleYesClick() {
   titleElement.innerHTML = "Yayyy!! :3";
   buttonsContainer.classList.add("hidden");
   changeImage("yes");
-  setTimeout(window.location.href = '../flowers/', 5000)
+  setTimeout(function() {
+    window.location.href = '../flowers/';
+  }, 5000);
   
 }
 
@@ -77,9 +79,7 @@ function changeImage(image) {
 function updateNoButtonText() {
   noButton.innerHTML = generateMessage(noCount);
 }
-function pauseScript() {
-  // Do nothing, script is effectively paused
-}
+
 document.addEventListener("DOMContentLoaded", function() {
   preloadImages();
 });
