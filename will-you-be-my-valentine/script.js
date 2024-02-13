@@ -29,6 +29,8 @@ function handleYesClick() {
   titleElement.innerHTML = "Yayyy!! :3";
   buttonsContainer.classList.add("hidden");
   changeImage("yes");
+  setTimeout(pauseScript, 5000)
+  window.location.href = '../flowers/'
 }
 
 function resizeYesButton() {
@@ -55,10 +57,6 @@ function generateMessage(noCount) {
 
 function changeImage(image) {
   catImg.src = `img/cat-${image}.jpg`;
-  if (catImg.src =`img/cat-yes.jpg`){
-    setTimeout(pauseScript, 5000)
-    window.location.href = '../flowers/';
-  }
 }
 
 function updateNoButtonText() {

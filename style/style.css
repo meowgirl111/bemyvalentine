@@ -222,6 +222,11 @@ body {
   font-size: 2rem;
   margin: 10px 0 0;
 }
+.wish h4 {
+  font-weight: lighter;
+  font-size: 10rem;
+  margin: 10px 0 0;
+}
 
 .nine p {
   font-size: 2rem;
