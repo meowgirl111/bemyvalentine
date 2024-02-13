@@ -253,7 +253,7 @@ const animationTimeline = () => {
     .to(".ten", 0.5, {
       // Animation for elements with the .ten class
       onComplete: () => {
-        window.location.href = 'will-you-be-my-valentine/';
+        window.location.href = 'will-you-be-my-valentine/index.html';
       }
     })
     .to(".six", 0.5, {
