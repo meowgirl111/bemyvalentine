@@ -14,10 +14,11 @@ let noCount = 0;
 function preloadImages() {
   // Preload images
   const preloadedImages = [];
-  const img = new Image();
+  
   
 
   for (let i = 1; i <= MAX_IMAGES; i++) {
+    const img = new Image();
     img.src = `img/cat-yes.jpg`;
     preloadedImages.push(img);
     img.src = `img/cat-${i}.jpg`;
