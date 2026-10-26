@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#ffd6e7" />
+  <title>Розовая Монополия</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💗</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="lib/peerjs.min.js"></script>
+  <script src="lib/qrcode.js"></script>
+</head>
+<body>
+  <div id="bg-hearts" aria-hidden="true"></div>
+
+  <!-- ===================== Главное меню ===================== -->
+  <section id="screen-home" class="screen">
+    <div class="home-card">
+      <div class="logo">
+        <div class="logo-icon">🏙️💗</div>
+        <h1>Розовая Монополия</h1>
+        <p class="tagline">Москва, магазины и немного любви. Игра на двоих — с телефона, компьютера или на одном экране.</p>
+      </div>
+
+      <div class="home-resume" id="home-resume"></div>
+
+      <div class="field">
+        <label for="nick">Твой никнейм</label>
+        <input id="nick" maxlength="16" placeholder="Например, Зайка" autocomplete="off" />
+      </div>
+      <div class="field">
+        <label>Фишка</label>
+        <div class="token-grid" id="token-grid"></div>
+      </div>
+      <div class="field">
+        <label>Цвет</label>
+        <div class="color-row" id="color-row"></div>
+      </div>
+
+      <div class="home-actions">
+        <button class="btn btn-primary btn-big" id="btn-create">✨ Создать комнату</button>
+        <div class="join-row">
+          <input id="join-code" maxlength="4" placeholder="КОД" autocomplete="off" autocapitalize="characters" />
+          <button class="btn btn-secondary" id="btn-join">Войти по коду</button>
+        </div>
+        <button class="btn btn-ghost" id="btn-local">📱 Играть вдвоём на одном устройстве</button>
+        <button class="btn btn-link" id="btn-rules-home">📖 Правила игры</button>
+      </div>
+      <p class="home-error" id="home-error"></p>
+    </div>
+  </section>
+
+  <!-- ===================== Лобби ===================== -->
+  <section id="screen-lobby" class="screen hidden">
+    <div class="lobby-card">
+      <button class="btn btn-link back" id="btn-lobby-back">← В меню</button>
+      <h2 id="lobby-title">Комната</h2>
+      <div id="lobby-share"></div>
+      <div class="lobby-status" id="lobby-status"></div>
+      <div class="lobby-players" id="lobby-players"></div>
+      <div class="lobby-settings" id="lobby-settings"></div>
+      <button class="btn btn-primary btn-big" id="btn-start">🎲 Начать игру</button>
+      <p class="hint" id="lobby-hint"></p>
+    </div>
+  </section>
+
+  <!-- ===================== Игра ===================== -->
+  <section id="screen-game" class="screen hidden">
+    <header class="topbar">
+      <div class="brand">💗 <span>Розовая Монополия</span></div>
+      <button class="chapter-pill" id="chapter-pill" title="Сюжет"></button>
+      <div class="top-right">
+        <span class="conn" id="conn"></span>
+        <button class="icon-btn" id="btn-sound" title="Звук">🔊</button>
+        <button class="icon-btn" id="btn-rules" title="Правила">📖</button>
+        <button class="icon-btn" id="btn-menu" title="Меню">☰</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <div class="board-wrap">
+        <div class="board" id="board">
+          <div class="center" id="center">
+            <div class="center-title">
+              <div class="center-logo">Розовая<br />Монополия</div>
+            </div>
+            <div class="dice" id="dice"><div class="die" id="die1"></div><div class="die" id="die2"></div></div>
+            <div class="center-status" id="center-status"></div>
+            <div class="center-actions" id="center-actions"></div>
+          </div>
+          <div class="tokens" id="tokens"></div>
+        </div>
+      </div>
+
+      <aside class="side">
+        <div class="players" id="players"></div>
+        <nav class="tabs" id="tabs">
+          <button data-tab="props" class="active">🏪 Объекты</button>
+          <button data-tab="cards">🃏 Карты <b id="cards-count"></b></button>
+          <button data-tab="story">📜 Сюжет</button>
+          <button data-tab="log">💬 Журнал <b id="log-dot"></b></button>
+        </nav>
+        <div class="tab-body">
+          <div class="tab" id="tab-props"></div>
+          <div class="tab hidden" id="tab-cards"></div>
+          <div class="tab hidden" id="tab-story"></div>
+          <div class="tab hidden" id="tab-log">
+            <div class="log" id="log"></div>
+            <form class="chat" id="chat-form">
+              <input id="chat-input" maxlength="200" placeholder="Написать сообщение…" autocomplete="off" />
+              <button class="btn btn-primary btn-sm">➤</button>
+            </form>
+          </div>
+        </div>
+        <div class="reactions" id="reactions"></div>
+      </aside>
+    </main>
+  </section>
+
+  <div id="modal-root"></div>
+  <div id="toasts"></div>
+  <div id="floaters" aria-hidden="true"></div>
+  <canvas id="confetti"></canvas>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
