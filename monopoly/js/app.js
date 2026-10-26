@@ -146,6 +146,7 @@ function startHost() {
     close: onHostClose,
     status: (t, lvl) => setNet(t, lvl),
     error: (t) => { setNet(t, 'bad'); toast(t, 'err'); },
+    seq: () => (app.state ? app.state.seq : 0),
   });
   commit();
 }
@@ -183,6 +184,7 @@ function onHostMessage(conn, msg) {
     commit();
     return;
   }
+  if (msg.t === 'sync') { app.net.send(conn, { t: 'state', s: s }); return; }
   if (msg.t === 'act' && conn.pid !== undefined) {
     const err = act(s, conn.pid, msg.a);
     if (err) app.net.send(conn, { t: 'err', msg: err });
@@ -211,11 +213,8 @@ function joinRoom() {
   app.myPids = [];
   store.set('rm_guest', { code });
   setNet('Подключаюсь…', 'warn');
-  app.net = new Guest(code, {
-    open: () => {
-      setNet('🟢 Онлайн', '');
-      app.net.send({ t: 'hello', clientId, profile });
-    },
+  app.net = new Guest(code, { t: 'hello', clientId, profile }, {
+    open: () => setNet('🟢 Онлайн', ''),
     message: onGuestMessage,
     status: (t, lvl) => setNet(t, lvl),
     error: (t) => { setNet(t, 'bad'); toast(t, 'err'); },
@@ -225,8 +224,22 @@ function joinRoom() {
 }
 
 function onGuestMessage(msg) {
-  if (msg.t === 'welcome') { app.myPids = [msg.pid]; return; }
-  if (msg.t === 'state') { app.state = msg.s; renderAll(); return; }
+  if (msg.t === 'welcome') {
+    app.myPids.splice(0, app.myPids.length, msg.pid);
+    if (app.state) renderAll();
+    return;
+  }
+  if (msg.t === 'state') {
+    // сообщения идут через несколько серверов — более старое состояние могло прийти позже
+    if (app.state && msg.s.seq <= app.state.seq) return;
+    app.state = msg.s;
+    renderAll();
+    return;
+  }
+  if (msg.t === 'ping') {
+    if (!app.state || msg.seq > app.state.seq) app.net.send({ t: 'sync' });
+    return;
+  }
   if (msg.t === 'err') { G.showError(msg.msg); return; }
   if (msg.t === 'full') {
     toast(msg.msg, 'err');
@@ -270,6 +283,7 @@ function dispatch(action, pid) {
 
 function commit() {
   if (app.mode === 'host') {
+    app.state.seq++; // у каждого рассылаемого состояния свой номер — гость отбрасывает повторы
     store.set('rm_host', { code: app.code, state: app.state });
     app.net && app.net.broadcast({ t: 'state', s: app.state });
   } else if (app.mode === 'local') {
@@ -279,6 +293,10 @@ function commit() {
 }
 
 function setNet(text, level) {
+  if (app.mode === 'host' && app.gameInited && level !== 'bad' && !/сервер/.test(text)) {
+    text = guestOnline() ? '🟢 Соперник онлайн' : '🟠 Соперник не в сети';
+    level = guestOnline() ? '' : 'warn';
+  }
   app.netStatus = text;
   app.netLevel = level;
   G.setConn(text, level);
